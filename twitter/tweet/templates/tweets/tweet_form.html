@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Twitter Index
+{% endblock title %}
+
+{% block content %}
+    <h1 class="text-center"> 
+        Twitter!
+    </h1>
+    <h2 class="text-center"> 
+        {% if form.instance.pk %} 
+            Edit Tweet 
+        {% else %} 
+            Create Tweet
+        {% endif %}
+    </h2>
+    <h3 class=" font-monospace font-size-5">
+        <form class="form p-2 rounded shadow-sm" style="max-width:1000px; method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                <div class="mb-10 gap-10 mt-20 mb-10 d-flex flex-column">
+                
+
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}<small class="form-text text-muted">{{ field.help_text }}</small>{% endif %}
+                    {{ field.errors }}
+                    
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary btn-block mt-3">Post</button>
+
+        </form>
+    
+    </h3>
+{% endblock content %} 
