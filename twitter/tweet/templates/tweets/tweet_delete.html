@@ -6,6 +6,21 @@
 
 {% block content %}
     <h1 class="text-center"> 
-        Welcome to Twitter!
+        sure ?
     </h1>
+
+
+
+<div class="d-flex justify-content-center align-items-center flex-column mt-4">
+
+
+<form method="post">
+
+    {% csrf_token %}
+    <a href="{% url "tweet_list" %}" class="btn btn-success mt-3">Cancel</a>
+    <button type="submit" class="btn btn-danger mt-3">Yes</button>
+    
+</form>
+
+</div>
 {% endblock content %} 

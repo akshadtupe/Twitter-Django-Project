@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Twitter Index
+    Create Tweet
 {% endblock title %}
 
 {% block content %}
-    <h1 class="text-center"> 
+    {% comment %} <h1 class="text-center"> 
         Twitter!
-    </h1>
+    </h1> {% endcomment %}
     <h2 class="text-center"> 
         {% if form.instance.pk %} 
             Edit Tweet 
@@ -15,24 +15,27 @@
             Create Tweet
         {% endif %}
     </h2>
-    <h3 class=" font-monospace font-size-5">
-        <form class="form p-2 rounded shadow-sm" style="max-width:1000px; method="post" enctype="multipart/form-data">
+    <h3 class=" font-monospace font-size-5 text-primary">
+        <form class="form p-2 rounded bg-dark shadow-sm" style="max-width:500px;" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.non_field_errors }}
             {% for field in form %}
-                <div class="mb-10 gap-10 mt-20 mb-10 d-flex flex-column">
+                <div class=" mt-3 d-flex flex-column ">
                 
 
                     {{ field.label_tag }}
                     {{ field }}
-                    {% if field.help_text %}<small class="form-text text-muted">{{ field.help_text }}</small>{% endif %}
+                    {% if field.help_text %}<small class="form-text text-warning">{{ field.help_text }}</small>{% endif %}
                     {{ field.errors }}
                     
                 </div>
             {% endfor %}
+        
             <button type="submit" class="btn btn-primary btn-block mt-3">Post</button>
+            <a href="{% url "tweet_list" %}" class="btn btn-secondary mt-3">Cancel</a>
+           
 
-        </form>
+            </form>
     
     </h3>
 {% endblock content %} 
